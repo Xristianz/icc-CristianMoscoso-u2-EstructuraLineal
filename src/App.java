@@ -4,6 +4,8 @@ import controllers.Cola;
 import controllers.ColaG;
 import controllers.Stack;
 import controllers.StackG;
+import ejercicio_01_sing.SigValidator;
+import ejercicio_02_sorting.StackSorter;
 import models.Persona;
 
 public class App {
@@ -71,7 +73,30 @@ public class App {
         colaPersonas.removeByName("David");
         colaPersonas.printCola();
 
+        SigValidator validador = new SigValidator();
+        String[] pruebas = {"([]){}", "({)}", "()[]{}", "(([]))", "(([]))["};
 
+        System.out.println("Validación de signos:");
+        for (String prueba : pruebas) {
+            boolean resultado = validador.validar(prueba);
+            System.out.println(prueba + " → " + resultado);
+            validador.reiniciar(); 
+        }
 
+        // Ejercicio 2: Ordenar pila
+        StackSorter sorter = new StackSorter();
+        sorter.insertar(5);
+        sorter.insertar(1);
+        sorter.insertar(4);
+        sorter.insertar(2);
+
+        Stack resultadoOrdenado = sorter.ordenar();
+
+        System.out.println("\n Pila ordenada (de menor a mayor):");
+        resultadoOrdenado.printStack(); 
     }
+
+
+
 }
+
